@@ -1,0 +1,59 @@
+
+/***************************************************************************
+ FACTORISATION RSA ALDO PSD
+
+*******************************************************************************/
+
+#include<stdio.h>
+#include<math.h>
+int
+premier (unsigned long long int p)
+{
+  int m;
+  unsigned long long i;
+  for (i = 2; i <sqrt(p); i++)
+    {
+      m = p % i;
+      if (m == 0)
+	{
+	  m = 0;
+	  i = p;
+	}
+      else
+	m = 1;
+    }
+  return m;
+}
+
+int
+main ()
+{
+  unsigned long long int n, a, b, c, d, e, i, q, p;
+  printf ("entrez un nombre");
+  scanf ("%llu", &n);
+  for (i = 3; i < n; i++)
+    {
+      a = premier (i);
+      d = n % i;
+      q = n / i;
+      e = premier (q);
+
+
+      if (a && !d && e)
+	{
+	  p = i;
+	  i = n;
+	}
+    }
+
+
+  printf (" P=%llu q=%llu", q, p);
+  printf ("\n");
+
+  printf ("\t\t ALDO PSD");
+  printf ("\n\t\t\tR");
+  printf ("\n\t\t\tS");
+  printf ("\n\t\t\tA");
+
+  return 0;
+}
